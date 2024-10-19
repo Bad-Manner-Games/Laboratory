@@ -22,7 +22,7 @@ public partial class LaboratoryPlugin : BasePlugin
     /// <summary>
     /// The name of the subfolder used for appdata
     /// </summary>
-    public string AppDataSubFolderName { get; set; } = "Laboratory";
+    public const string AppDataSubFolderName = "Laboratory";
 
     /// <summary>
     /// Custom regions which will be added

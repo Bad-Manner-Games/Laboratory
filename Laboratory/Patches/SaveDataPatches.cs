@@ -18,14 +18,14 @@ internal static class SaveDataPatches
     [HarmonyPrepare]
     public static void PreparePersistentDataPatch()
     {
-        if (GameConfig.CustomSaveData) Directory.CreateDirectory(Path.Combine(PlatformPaths.persistentDataPath, LaboratoryPlugin.Instance.AppDataSubFolderName));
+        if (GameConfig.CustomSaveData) Directory.CreateDirectory(Path.Combine(PlatformPaths.persistentDataPath, LaboratoryPlugin.AppDataSubFolderName));
     }
 
     [HarmonyPatch(typeof(PlatformPaths), nameof(PlatformPaths.persistentDataPath), MethodType.Getter)]
     [HarmonyPostfix]
     public static void PersistentDataPatch(ref string __result)
     {
-        if (GameConfig.CustomSaveData) __result = Path.Combine(__result, LaboratoryPlugin.Instance.AppDataSubFolderName);
+        if (GameConfig.CustomSaveData) __result = Path.Combine(__result, LaboratoryPlugin.AppDataSubFolderName);
     }
 
     [HarmonyPatch(typeof(PlayerPurchasesData), nameof(PlayerPurchasesData.GetPurchase))]
