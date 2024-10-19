@@ -31,6 +31,7 @@ public class CooldownButton : MonoBehaviour
 
     public SpriteRenderer Renderer;
     public TextMeshPro TimerText;
+    public TextMeshPro ButtonLabelText;
     public AspectPosition Aspect;
     public PassiveButton Button;
     public Action OnClickAction;
@@ -54,6 +55,12 @@ public class CooldownButton : MonoBehaviour
         TimerText = Instantiate(HudManager.Instance.KillButton.cooldownTimerText, buttonObj.transform);
         TimerText.transform.localPosition = new Vector3(0, 0.07f, -0.001f);
         TimerText.gameObject.SetActive(true);
+        
+        // Button Text
+        ButtonLabelText = Instantiate(HudManager.Instance.KillButton.buttonLabelText, buttonObj.transform);
+        ButtonLabelText.transform.localPosition = new Vector3(0f, -0.552f, -0.001f);
+        ButtonLabelText.gameObject.SetActive(true);
+        ButtonLabelText.text = "";
         
         // AspectPosition
         Aspect = buttonObj.AddComponent<AspectPosition>();
