@@ -9,6 +9,7 @@ using Laboratory.Utilities;
 using Reactor;
 using Reactor.Patches;
 using Reactor.Utilities;
+using Debug = UnityEngine.Debug;
 
 namespace Laboratory;
 
@@ -59,7 +60,5 @@ public partial class LaboratoryPlugin : BasePlugin
         
         AddComponent<MapLoader>();
         AddComponent<UpdateEvents>();
-
-        ReactorVersionShower.TextUpdated += text => text.text += "\nLaboratory " + Version;
     }
 }
