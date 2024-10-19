@@ -60,7 +60,7 @@ public class CooldownButton : MonoBehaviour
         ButtonLabelText = Instantiate(HudManager.Instance.KillButton.buttonLabelText, buttonObj.transform);
         ButtonLabelText.transform.localPosition = new Vector3(0f, -0.552f, -0.001f);
         ButtonLabelText.gameObject.SetActive(true);
-        ButtonLabelText.text = "";
+        DestroyImmediate(ButtonLabelText.gameObject.GetComponent<TextTranslatorTMP>());
         
         // AspectPosition
         Aspect = buttonObj.AddComponent<AspectPosition>();
@@ -82,6 +82,8 @@ public class CooldownButton : MonoBehaviour
     public virtual void Update()
     {
         Button!.enabled = Renderer!.enabled = TimerText!.enabled = ShouldBeVisible();
+        ButtonLabelText.enabled = Button.enabled;
+        
         // ReSharper disable once CompareOfFloatsByEqualityOperator -> Its set to this value manually
         if (CurrentTime == int.MaxValue) return;
         if (MeetingHud.Instance || ExileController.Instance) CurrentTime = Cooldown;
@@ -153,6 +155,7 @@ public class CooldownButton : MonoBehaviour
     {
         Renderer!.material.SetFloat(Desat, saturated ? 0 : 1);
         Renderer.color = saturated ? Palette.EnabledColor : Palette.DisabledClear;
+        ButtonLabelText.color = saturated ? Palette.EnabledColor : Palette.DisabledClear;
     }
         
     #endregion
